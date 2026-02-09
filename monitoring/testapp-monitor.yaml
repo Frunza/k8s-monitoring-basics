@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: testapp-monitor
+  namespace: testapp
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: testapp
+  endpoints:
+  - targetPort: 5678
+    interval: 15s
+    path: /

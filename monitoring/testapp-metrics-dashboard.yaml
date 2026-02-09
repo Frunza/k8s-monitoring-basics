@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: testapp-dashboard
+  namespace: monitoring
+  labels:
+    grafana_dashboard: "1"
+data:
+  testapp-dashboard.json: |
+    {
+      "title": "TestApp-Metrics Dashboard",
+      "panels": [
+        {
+          "title": "CPU Usage",
+          "type": "graph",
+          "targets": [{
+            "expr": "rate(container_cpu_usage_seconds_total{namespace=\"testapp-metrics\",container=\"app\"}[5m])",
+            "legendFormat": "{{pod}}"
+          }]
+        },
+        {
+          "title": "Memory Usage",
+          "type": "graph", 
+          "targets": [{
+            "expr": "container_memory_usage_bytes{namespace=\"testapp-metrics\",container=\"app\"}",
+            "legendFormat": "{{pod}}"
+          }]
+        },
+        {
+          "title": "Version",
+          "type": "stat",
+          "targets": [{
+            "expr": "version{namespace=\"testapp-metrics\"}",
+            "legendFormat": "v{{version}}"
+          }]
+        }
+      ]
+    }

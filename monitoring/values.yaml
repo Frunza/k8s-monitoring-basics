@@ -1,0 +1,25 @@
+grafana:
+  enabled: true
+  adminPassword: "admin123"
+  service:
+    type: NodePort
+    nodePort: 30000
+  
+prometheus:
+  enabled: true
+  service:
+    type: NodePort
+    nodePort: 30090
+  prometheusSpec:
+    # Monitor ALL ServiceMonitors/PodMonitors
+    serviceMonitorSelector: {}
+    podMonitorSelector: {}
+    # Enable scraping of all namespaces
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+  
+kube-state-metrics:
+  enabled: true
+  
+prometheus-node-exporter:
+  enabled: true

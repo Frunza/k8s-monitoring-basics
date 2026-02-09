@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testapp-metrics
+  namespace: testapp-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testapp-metrics
+  template:
+    metadata:
+      labels:
+        app: testapp-metrics
+    spec:
+      containers:
+      - name: app
+        image: quay.io/brancz/prometheus-example-app:v0.3.0
+        ports:
+        - name: http
+          containerPort: 8080
