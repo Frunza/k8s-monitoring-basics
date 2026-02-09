@@ -54,7 +54,7 @@ spec:
       port: 80
       targetPort: 5678
 ```
-, and the namespace would be
+, and the namespace would be:
 ```sh
 apiVersion: v1
 kind: Namespace
@@ -63,7 +63,7 @@ metadata:
 ```
 Note that you will need to label your service, so that `prometheus` can find it for scraping.
 
-If they are all found in a directory named *testapp*, we can add all of htem to the cluster with the follwing command:
+If they are all found in a directory named *testapp*, we can add all of them to the cluster with the follwing command:
 ```sh
 kubectl apply -f testapp
 ```
@@ -172,7 +172,7 @@ kubectl exec -n monitoring statefulset/prometheus-prometheus-kube-prometheus-pro
 }
 ```
 
-To check if `grafana` is acccessible, we can call:
+To check if `grafana` is accessible, we can call:
 ```sh
 kubectl exec -n monitoring deployment/prometheus-grafana -- wget -q -O- --timeout=2 http://localhost:3000/api/health
 ```
@@ -252,7 +252,7 @@ spec:
     interval: 15s
     path: /
 ```
-, and apply it
+, and apply it:
 ```sh
 kubectl apply -f ./monitoring/testapp-monitor.yaml
 ```
@@ -535,7 +535,7 @@ grafana-sc-dashboard ->
 grafana-sc-datasources ->
 grafana -> 3000 9094 9094 6060
 ```
-which shows us clearly that `grafana` is the main container and the other 2 are sidecar containers.
+, which shows us clearly that `grafana` is the main container and the other 2 are sidecar containers.
 
 Now let me prove that our dashboard was copied in some *dashboards* directory. The correct container is obviously *grafana-sc-dashboard*. Let's run:
 ```sh
