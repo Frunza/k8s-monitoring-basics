@@ -257,7 +257,7 @@ spec:
 kubectl apply -f ./monitoring/testapp-monitor.yaml
 ```
 
-This will not work in the end, because our *testapp* does not have a monitoring endpoint, and the path we are trying to monitor returns *Test App is Working!*, which will no be able to be interpreted by `prometheus`.
+This will not work in the end, because our *testapp* does not have a monitoring endpoint, and the path we are trying to monitor returns *Test App is Working!*, which will no be able to be interpreted by `prometheus`. `prometheus` can find this *ServiceMonitor* by looking for its label *release: prometheus*, which is a default in the `helm` chart.
 
 By calling:
 ```sh
